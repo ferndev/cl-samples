@@ -3,10 +3,10 @@
 ### Description
 
 This sample demonstrates the following CL concepts:
-- Using the CL Html Filter to remove special chars (such as ", ' or <) and/or html and php tags included in either a 
-  request (for instance in certain fields in a post) or in a response.
-- The alternative App configuration shown in a previous sample is used here as well.
-- We create, programmatically an empty configuration, which will be loaded with the external settings/settings.php.
+- Using the CL Html Filter to convert special chars (such as ", or <) to entities and/or to remove html and php tags 
+  included in either a request (for instance in certain fields in a post) or in a response.
+- The alternative App configuration (via settings.php) shown in a previous sample is used here as well.
+- We create, programmatically, an empty configuration, which will be automatically filled with the external settings/settings.php.
 - We create a DEV deployment, and because of that, our Logging is automatically set to debug, so we will see a debug file 
   entry in the logs folder.
 - When our DEV deployment is added to the App, so is our initially empty config, which was added to the deployment.

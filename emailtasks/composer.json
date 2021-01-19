@@ -1,0 +1,8 @@
+{
+    "require": {
+        "phpunit/phpunit": "^8.5.14",
+		"ferndev/codelib": "dev-master",
+        "swiftmailer/swiftmailer": "^6.0",
+        "phpmailer/phpmailer": "~6.1"
+    }
+}

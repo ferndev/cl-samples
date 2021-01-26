@@ -7,9 +7,6 @@ This sample demonstrates the following CL concepts:
 - Using the emailService to send emails from a Plugin
 - Using Code-lib via composer
 - Unit testing a Cl Plugin  
-  (This readme is shorter than usual so far, but together with comments in the sample, you can make sense of the concepts 
-  listed above)
-
 
 #### Configuring 3rd party libraries
 

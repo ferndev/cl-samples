@@ -1,4 +1,4 @@
-## CodeLib Sample: Hello from Plugin
+## CodeLib Sample: Forms and Plugins
 
 ### Description
 

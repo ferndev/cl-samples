@@ -49,5 +49,5 @@ $app->setDeployment($dpl, true);
 $app->addPlugin('*.*', 'WelcomePlugin')
     ->addElement('pg1', $page, true) // we start with Page pg1 as our default page
     ->addElement('pg2', $page2)
-    ->run(true);
+    ->run();
 

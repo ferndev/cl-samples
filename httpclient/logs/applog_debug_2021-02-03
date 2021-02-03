@@ -1,0 +1,28 @@
+[Wed 2021/02/03 02:42:35][debug]: Calling filters for method: get
+[Wed 2021/02/03 02:42:35][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 02:42:59][debug]: Calling filters for method: get
+[Wed 2021/02/03 02:42:59][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 06:35:26][debug]: Calling filters for method: get
+[Wed 2021/02/03 06:35:26][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 07:19:51][debug]: Execution completed in 2664.7476990223 seconds
+[Wed 2021/02/03 07:25:32][debug]: Calling filters for method: get
+[Wed 2021/02/03 07:25:32][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 07:27:39][debug]: Execution completed in 127.29278206825 seconds
+[Wed 2021/02/03 10:56:31][debug]: Calling filters for method: get
+[Wed 2021/02/03 10:56:31][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 11:02:03][debug]: Calling filters for method: get
+[Wed 2021/02/03 11:02:03][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 11:03:22][debug]: Calling filters for method: get
+[Wed 2021/02/03 11:03:22][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 11:07:09][debug]: Calling filters for method: get
+[Wed 2021/02/03 11:07:09][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 11:10:09][debug]: Calling filters for method: get
+[Wed 2021/02/03 11:10:09][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 11:11:37][debug]: Calling filters for method: get
+[Wed 2021/02/03 11:11:37][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 11:22:32][debug]: Calling filters for method: get
+[Wed 2021/02/03 11:22:32][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 11:44:05][debug]: Execution completed in 1292.9195728302 seconds
+[Wed 2021/02/03 12:32:37][debug]: Calling filters for method: get
+[Wed 2021/02/03 12:32:37][debug]: Injecting dependencies for app\plugin\HttpClientPlugin
+[Wed 2021/02/03 12:32:41][debug]: Execution completed in 4.4069859981537 seconds

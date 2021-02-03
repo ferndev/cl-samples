@@ -88,12 +88,24 @@ class MailTaskPlugin extends CLBasePlugin implements \cl\contract\CLPlugin, CLIn
 
     /**
      * @return array required dependencies
-     * each entry is an array as well, which specifies the dependency key, optional class, optional params, and optional instantiation
+     * each entry provides information about a dependency, in the form: CLDependency::new('key'), where key is the key
+     * assigned to that dependency. A key is assigned to a dependency, either by Code-lib (CL), or, if not a dependency
+     * pre-configured by CL, by a Plugin in your App the first time it is needed.
+     * When a dependency is configured for the first time by your App, it must tell the framework where to find it, and
+     * how you want it instantiated. Use additional parameters of CLDependency::new to achieve that.
+     * For instance, the $classname parameter allows you to specify the full class name (namespace and class name) of
+     * your dependency. $exClass allows CL to reinforce what parent class your $classname must extend or implement.
+     * Use $params if you need to pass any parameters to the dependency, and $instType to indicate whether this dependency
+     * can be shared or not, by using values CLFlag::SHARED or CLFlag::NOT_SHARED.
+     * is an array as well, which specifies the dependency key, optional class, optional params, and optional instantiation
      * type. Ex.:
-     * return [['cache', null, CLFlag::SHARED],  // <-- requires a cache instance. CL knows about this key, so no class is required
-     *         ['mysmartclass', '\app\core\Smartest.php', CLFlag::NOT_SHARED]]; // <-- requires this App class, which CL might not know about, so we tell it where to find it
-     * notice that CL will use the key passed to determine the name of a setter method that will receive the instance in your Plugin class.
-     * so, in the example above, it would call: setCache(cacheInstance); and setMysmartclass(smartInstance);
+     * return [CLDependency::new('cache', null, null, null, CLFlag::SHARED)],  // <-- requires a cache instance. CL knows about
+     * this key, so no class is required. Another example:
+     * return [CLDependency::new('mysmartclass', '\app\core\Smartest.php', null, null, CLFlag::NOT_SHARED)]; // <-- requires this
+     * App class, Smartest, which CL might not know about, so we tell it where to find it.
+     * If CL finds the required dependency, it will inject it in your Plugin, using a setter method based on the dependency key.
+     * So, in the example above, it would call: setCache(cacheInstance); and setMysmartclass(smartInstance);
+     * as it would expect those setter methods to be available in your Plugin
      */
     public function dependsOn(): array
     {

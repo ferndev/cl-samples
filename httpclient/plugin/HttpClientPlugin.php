@@ -1,9 +1,9 @@
 <?php
 /**
- * HelloPlugin.php
+ * HttpClientPlugin.php
  */
 
-namespace app\plugin\helloplugin;
+namespace app\plugin;
 /**
  * Copyright 2021 Fernando Martinez
  *
@@ -25,18 +25,20 @@ use cl\contract\CLLogger;
 use cl\contract\CLResponse;
 use cl\contract\CLServiceRequest;
 use cl\core\CLDependency;
-use cl\core\CLFlag;
 
 /**
- * Class HelloPlugin
- * @package app\plugin\helloplugin
+ * Class HttpClientPlugin
+ * @package app\plugin
  */
-class HelloPlugin implements \cl\contract\CLPlugin, CLInjectable
+class HttpClientPlugin implements \cl\contract\CLPlugin, CLInjectable
 {
     private $logger;
     private $clServiceRequest;
     private $pluginResponse;
-    private $dependency;
+    /**
+     * @var \cl\core\CLSimpleHttpClient
+     */
+    private $httpclient;
 
     public function __construct(CLServiceRequest $clServiceRequest, CLResponse $pluginResponse)
     {
@@ -46,23 +48,26 @@ class HelloPlugin implements \cl\contract\CLPlugin, CLInjectable
 
     public function run(): CLResponse
     {
-        // we can log with this global function
-        _log('executing HelloPlugin');
-        // or we can log using the logger class injected to our Plugin
-        $this->logger->info('always before rendering the output');
-        // notice how here we use the injected dependency to produce the output (sayHello)
-        $this->pluginResponse->addVars(['_phead.value' => 'HelloPlugin Sets the Page Title',
-            '_body.value' => 'HelloPlugin gets output from injected dependency:'.$this->dependency->sayHello()]);
+        _log('executing HttpClientPlugin');
+        $response = $this->httpclient->get(
+            (new \cl\web\CLBasicHttpClientRequest('https://openlibrary.org/subjects/programming.json?limit=25'))
+                ->addHeader('Accept', 'application/json')
+        );
+        $this->pluginResponse->addVars(['head.value' => 'Programming Books Received', 'body.value' => $this->getBookList($response->getPayload()[0])]);
         return $this->pluginResponse;
-    }
-
-    public function setPluginDependency($dependency) {
-        $this->dependency = $dependency;
     }
 
     public function setLogger(CLLogger $logger): void
     {
         $this->logger = $logger;
+    }
+
+    /**
+     * @param mixed $httpclient
+     */
+    public function setHttpclient($httpclient): void
+    {
+        $this->httpclient = $httpclient;
     }
 
     /**
@@ -84,10 +89,37 @@ class HelloPlugin implements \cl\contract\CLPlugin, CLInjectable
      * App class, Smartest, which CL might not know about, so we tell it where to find it.
      * If CL finds the required dependency, it will inject it in your Plugin, using a setter method based on the dependency key.
      * So, in the example above, it would call: setCache(cacheInstance); and setMysmartclass(smartInstance);
-     * as it would expect those setter methods to be available in your Plugin
+     * as it would expect those setter methods to be available in your Plugin.
+     * For this sample, given that our dependency key is 'httpclient', it would then expect a setter: setClhttpclient,
+     * which you can see defined above.
+     * Notice that because httpclient is a dependency known to CL, you don't have to specify its classname or its parent
      */
     public function dependsOn(): array
     {
-        return [new CLDependency('pluginDependency','\app\plugin\helloplugin\PluginDependency',null,null,CLFlag::SHARED)];
+        return [CLDependency::new('httpclient')];
+    }
+
+    private function getBookList($data): string {
+        if ($data == null) { return 'no books returned'; }
+        $jsondata = json_decode($data, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            $works = $jsondata['works']??[];
+            if (count($works) > 0) {
+                $html = '<h3>Number of books returned: '.count($works).'</h3>';
+                $html .= '<ul>';
+                foreach ($works as $work) {
+                    $html .= '<li><div><strong>Title:</strong> ' . $work['title'] . '</div>';
+                    if (isset($work['authors'])) {
+                        foreach ($work['authors'] as $author) {
+                            $html .= '<div><strong>Author:</strong> ' . $author['name'] . '</div>';
+                        }
+                    }
+                    $html .= '</li>';
+                }
+                $html .= '</ul>';
+                return $html;
+            }
+        }
+        return 'no books returned';
     }
 }

@@ -31,8 +31,6 @@ define('APP_NS', __NAMESPACE__);
 require CL_DIR . 'cl/CLStart.php';
 
 $config = new CLConfig();
-// by default, the log folder of your App is a folder called logs, which you must create within your App's root folder.
-// but you can change that and tell CL where logs must go, with the 'logFolder' config option:
 $config->addAppConfig('httpclient', 'curl')
        ->addAppConfig(LOGLEVEL, CLLogger::DEBUG);
 // here we create a Dev level deployment, and we add our configuration to it. You can add several types of deployment

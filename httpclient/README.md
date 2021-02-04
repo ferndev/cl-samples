@@ -37,24 +37,33 @@ the data received. Follow the Plugin code to see those additional details.
 
 ### Running this Sample
 
+- run composer install to get your dependencies in place. You should get CL and Guzzle installed in your vendor folder.
 - Access this sample **index.php** file via your webserver
 - If all goes well, you will receive a response with content similar to this:
-  Number of books returned: 25
-  Title: Software Engineering
-  Author: Roger S. Pressman
-  Author: Roger Pressman
-  Title: Cloak and Dagger Net Force (Tom Clancy's Net Force #1)
-  Author: Tom Clancy
-  Author: Steve R. Pieczenik
-  Title: Information systems literacy
-  Author: Hossein Bidgoli
-  Title: IBM PC Apprentice
-  Author: Inc. Wordware Pub.
-  Author: Leonard Paul Kubiak
-  Title: IEEE standard for information technology
-  Author: Institute of Electrical and Electronics Engineers.
-  Author: IEEE
-  Author: Institute of Electrical & Electronics En
-  ...
+
+  Number of books returned: 25<br>
+  Title: Software Engineering<br>
+  Author: Roger S. Pressman<br>
+  Author: Roger Pressman<br>
+  Title: Cloak and Dagger Net Force (Tom Clancy's Net Force #1)<br>
+  Author: Tom Clancy<br>
+  Author: Steve R. Pieczenik<br>
+  Title: Information systems literacy<br>
+  Author: Hossein Bidgoli<br>
+  Title: IBM PC Apprentice<br>
+  Author: Inc. Wordware Pub.<br>
+  Author: Leonard Paul Kubiak<br>
+  Title: IEEE standard for information technology<br>
+  Author: Institute of Electrical and Electronics Engineers.<br>
+  Author: IEEE<br>
+  Author: Institute of Electrical &amp; Electronics En<br>
+  
+- Initially the App was configured to use cUrl as underlying or delegating httpclient
+- You can try then changing the http client to use Guzzle instead, and then reload the App.
+- You should still get the same result.
+
+Remember that in order to switch to Guzzle as the client, all you need to do is change this line in index.php:<br>
+_$config->addAppConfig('httpclient', 'curl')_ so it reads as follows:<br>
+_$config->addAppConfig('httpclient', 'guzzle')_<br>
   
 

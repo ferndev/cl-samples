@@ -1,0 +1,2 @@
+ALTER TABLE article CHANGE datepublished pubdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE article DROP author;

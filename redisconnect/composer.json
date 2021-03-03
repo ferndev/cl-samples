@@ -1,0 +1,15 @@
+{
+  "name": "ferndev/redisconnect",
+  "description": "Code-lib sample showing how to use Redis with the framework",
+  "minimum-stability": "stable",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Fernando",
+      "email": "ferndevct@gmail.com"
+    }
+  ],
+  "require": {
+      "predis/predis": "^v1.1.6"
+  }
+}
